@@ -2,7 +2,7 @@ from marshmallow.fields import Integer, String
 
 from app import db, ma
 from orm.entities import StationaryItem, Ballot, Invoice, BallotBox, \
-    Election, Proof, Submission, Electorate, SubmissionVersion, Area, Party, BallotBook
+    Election, Proof, Submission, Electorate, SubmissionVersion, Area, Party, BallotBook, ZonalAroResponse
 from orm.entities.Election import InvalidVoteCategory
 from orm.entities.IO import File
 from orm.entities.Invoice import InvoiceStationaryItem
@@ -725,3 +725,17 @@ class BallotBookSchema(ma.ModelSchema):
 
     stationaryItem = ma.Nested(StationaryItem_Schema)
     ballots = ma.Nested(Ballot_Schema, only=["ballotId", "stationaryItemId", "ballotType"], many=True)
+
+
+class ZonalAroResponseSchema(ma.ModelSchema):
+    class Meta:
+        fields = (
+            "zonalAroQuestionId",
+            "zonalAroQuestionText",
+            "done"
+        )
+
+        model = ZonalAroResponse.Model
+        # optionally attach a Session
+        # to use for deserialization
+        sqla_session = db.session

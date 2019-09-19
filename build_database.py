@@ -304,6 +304,11 @@ def build_database(dataset):
 
         candidate = get_object(row, "Candidate")
         election.add_candidate(candidateId=candidate.candidateId, partyId=party.partyId)
+
     for row in get_rows_from_csv('invalid-vote-categories.csv'):
         election.add_invalid_vote_category(row["Invalid Vote Category Description"])
+
+    for row in get_rows_from_csv('zonal-aro-questions.csv'):
+        election.add_zonal_aro_question(row["Zonal Aro Question Text"])
+
     db.session.commit()

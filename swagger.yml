@@ -78,6 +78,102 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
 
+
+  /zonal-aro/{pollingStationId}/question/:
+    get:
+      tags:
+        - zonalAro
+      summary: Get all.
+      operationId: api.ZonalAroQuestionApi.get_all
+      parameters:
+        - name: pollingStationId
+          required: true
+          in: path
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                type: array
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '404':
+          description: Resource was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '500':
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /zonal-aro/{pollingStationId}/question/{zonalAroQuestionId}/done:
+    post:
+      tags:
+        - zonalAro
+      summary: Get all.
+      operationId: api.ZonalAroQuestionApi.create
+      parameters:
+        - name: pollingStationId
+          required: true
+          in: path
+          schema:
+            type: integer
+            format: int64
+        - name: zonalAroQuestionId
+          required: true
+          in: path
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '404':
+          description: Resource was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '500':
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+
   /ballot:
     get:
       tags:

@@ -4,4 +4,4 @@ export const API_USER_INFO_KEY = "userinfo";
 export const API_USER_INFO_USERNAME_KEY = "sub";
 
 export const AUTH_APP_SIGN_IN_URL_PATH = "/tabulation/signin";
-
+export const AUTH_APP_SIGN_OUT_URL_PATH = "/tabulation/signout";

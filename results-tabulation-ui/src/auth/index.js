@@ -4,7 +4,7 @@ import {
     API_ACCESS_TOKEN_KEY,
     API_USER_INFO_KEY,
     API_USER_INFO_USERNAME_KEY,
-    AUTH_APP_SIGN_IN_URL_PATH
+    AUTH_APP_SIGN_IN_URL_PATH, AUTH_APP_SIGN_OUT_URL_PATH
 } from "./constants";
 import {AUTH_APP_URL, DEBUG} from "../config";
 import Cookies from 'js-cookie';
@@ -17,7 +17,11 @@ import {getErrorCode, getErrorMessage} from "../utils";
 import {ElectionContext} from "../services/election.provider";
 
 export function getAuthAppSignInUrl() {
-    return `${AUTH_APP_URL}${AUTH_APP_SIGN_IN_URL_PATH}`;
+    return `${AUTH_APP_URL}${AUTH_APP_SIGN_IN_URL_PATH}?clientRedirectUri=${encodeURIComponent(window.location.href)}`;
+}
+
+export function getAuthAppSignOutUrl() {
+    return `${AUTH_APP_URL}${AUTH_APP_SIGN_OUT_URL_PATH}?clientRedirectUri=${encodeURIComponent(window.location.href)}`;
 }
 
 export function getAccessToken() {
@@ -61,13 +65,7 @@ export function redirectToLogin() {
 }
 
 export function logout() {
-
-    //TODO: notify api to revoke access token
-
-    Cookies.remove('userinfo');
-    Cookies.remove('tabulation_access_token');
-
-    window.location.reload();
+    window.location.href = getAuthAppSignOutUrl();
 }
 
 
